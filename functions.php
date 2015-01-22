@@ -14,19 +14,19 @@ function guru_font_url() {
 function guru_scripts() {        
 //wp_enqueue_style( 'guru-font', guru_font_url(), array(), null );
 //wp_enqueue_style( 'guru-font-y', 'http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300&subset=latin,latin-ext', array(), null );
-wp_enqueue_style( 'guru-bootstrap', get_template_directory() . '/bootstrap/css/bootstrap.custom.css', array(), '3.0.3' );
-wp_enqueue_style( 'guru-bootstrap-theme', get_template_directory() . '/bootstrap/css/bootstrap-theme.min.css', array(), '3.0.3' );
-wp_enqueue_style( 'guru-style', get_template_directory() . '/style.css', array(), '3.0.3' );
+wp_enqueue_style( 'guru-bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.custom.css', array(), '3.0.3' );
+wp_enqueue_style( 'guru-bootstrap-theme', get_template_directory_uri() . '/bootstrap/css/bootstrap-theme.min.css', array(), '3.0.3' );
+wp_enqueue_style( 'guru-style', get_template_directory_uri() . '/style.css', array(), '3.0.3' );
 
 if(get_page_template_slug() == 'tpl/guru_contact.php') {
             wp_enqueue_script( 'googleapis-map', 'https://maps.googleapis.com/maps/api/js?key='.get_option('gurutheme_google_apikey').'&sensor=false', array(), '1.0');
-            wp_enqueue_script( 'guru-gmap', get_template_directory() . '/js/gmap.js', array(), '1.0', true );
+            wp_enqueue_script( 'guru-gmap', get_template_directory_uri() . '/js/gmap.js', array(), '1.0', true );
 }
     wp_enqueue_script('jquery-masonry');
     wp_enqueue_style('jquery-masonry');
     
-    wp_enqueue_script( 'guru-images-loaded', get_template_directory() . '/js/imagesloaded.pkgd.min.js', array( 'jquery' ), '20141209', true );
-    wp_enqueue_script( 'guru-script', get_template_directory() . '/js/main.js', array( 'jquery' ), '20141209', true );
+    wp_enqueue_script( 'guru-images-loaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array( 'jquery' ), '20141209', true );
+    wp_enqueue_script( 'guru-script', get_template_directory_uri() . '/js/main.js', array( 'jquery' ), '20141209', true );
 
 }
 add_action( 'wp_enqueue_scripts', 'guru_scripts' );
