@@ -448,4 +448,3 @@ wp_nonce_field( plugin_basename( __FILE__ ), $this->post_type . '_nonce' );
 }
 
 
-new Guru_Works();

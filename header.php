@@ -24,13 +24,24 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'twentyfifteen' ); ?></a>
 
+		<?php if ( has_nav_menu( 'primary' ) ) : ?>
+			<nav id="site-navigation" class="main-navigation" role="navigation">
+				<?php
+					// Primary navigation menu.
+					wp_nav_menu( array(
+						'menu_class'     => 'nav-menu',
+						'theme_location' => 'primary',
+					) );
+				?>
+			</nav><!-- .main-navigation -->
+		<?php endif; ?>
 	<div id="sidebar" class="sidebar">
+	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'twentyfifteen' ); ?></a>
 		<header id="masthead" class="site-header" role="banner">
 			<div class="site-branding">
 				<?php
-					if ( is_front_page() && is_home() ) : ?>
+					if ( true || is_front_page() && is_home() ) : ?>
 						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 					<?php else : ?>
 						<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
@@ -42,21 +53,7 @@
 					<?php endif;
 				?>
 			</div><!-- .site-branding -->
-                        <nav id="menu-primary">
-                           
-		<?php if ( has_nav_menu( 'primary' ) ) : ?>
-			<nav id="social-navigation" class="social-navigation" role="navigation">
-				<?php
-					// Social links navigation menu.
-					wp_nav_menu( array(
-						'theme_location' => 'primary',
-						'link_before'    => '<span class="screen-reader-text">',
-						'link_after'     => '</span>',
-					) );
-				?>
-			</nav><!-- .social-navigation -->
-		<?php endif; ?>
-                        </nav>
+		
 		</header><!-- .site-header -->
 
 		<?php get_sidebar(); ?>

@@ -9,13 +9,13 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php
-		// Post thumbnail.
-		guru_post_thumbnail();
-	?>
-
+	
 	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+            <?php
+            // Post thumbnail.
+            guru_post_thumbnail('guru_fullscreen');
+            the_title( '<h1 class="entry-title"><span>', '</span></h1>' );
+            ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
