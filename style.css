@@ -60,6 +60,7 @@ nav#site-navigation ul li a{
     text-transform: uppercase;
     letter-spacing: 3px;
 }
+.owl {background-color: #000;}
 .owl .owl-item .post-thumbnail{
 margin: 10px;
 -webkit-border-radius: 5px;
