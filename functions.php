@@ -14,6 +14,8 @@ function guru_font_url() {
 function guru_scripts() {        
 //wp_enqueue_style( 'guru-font', guru_font_url(), array(), null );
 //wp_enqueue_style( 'guru-font-y', 'http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300&subset=latin,latin-ext', array(), null );
+wp_enqueue_style( 'guru-font-y', '//fonts.googleapis.com/css?family=Raleway:400,700,300', array(), null );
+wp_enqueue_style( 'guru-font-y', '//fonts.googleapis.com/css?family=Open+Sans:400,700,400italic', array(), null );
 wp_enqueue_style( 'guru-bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.custom.css', array(), '3.0.3' );
 wp_enqueue_style( 'guru-bootstrap-theme', get_template_directory_uri() . '/bootstrap/css/bootstrap-theme.min.css', array(), '3.0.3' );
 wp_enqueue_style( 'guru-style', get_template_directory_uri() . '/style.css', array(), '3.0.3' );
