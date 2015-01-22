@@ -60,3 +60,10 @@ nav#site-navigation ul li a{
     text-transform: uppercase;
     letter-spacing: 3px;
 }
+.owl .owl-item .post-thumbnail{
+margin: 10px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+text-align: center;
+}

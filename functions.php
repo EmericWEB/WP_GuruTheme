@@ -11,6 +11,10 @@ function guru_font_url() {
 
 	return $font_url;
 }
+
+/**
+ * @todo scripts and styles should be include with theme options, next upgrade
+ */
 function guru_scripts() {        
 //wp_enqueue_style( 'guru-font', guru_font_url(), array(), null );
 //wp_enqueue_style( 'guru-font-y', 'http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300&subset=latin,latin-ext', array(), null );
@@ -19,6 +23,7 @@ wp_enqueue_style( 'guru-font-o', '//fonts.googleapis.com/css?family=Open+Sans:40
 wp_enqueue_style( 'guru-bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.custom.css', array(), '3.0.3' );
 wp_enqueue_style( 'guru-bootstrap-theme', get_template_directory_uri() . '/bootstrap/css/bootstrap-theme.min.css', array(), '3.0.3' );
 wp_enqueue_style( 'guru-style', get_stylesheet_directory_uri() . '/style.css', array(), '3.0.3' );
+wp_enqueue_style( 'guru-owl', get_stylesheet_directory_uri() . '/owl-carousel/owl.carousel.css', array(), '3.0.3' );
 
 if(get_page_template_slug() == 'tpl/guru_contact.php') {
             wp_enqueue_script( 'googleapis-map', 'https://maps.googleapis.com/maps/api/js?key='.get_option('gurutheme_google_apikey').'&sensor=false', array(), '1.0');
@@ -28,6 +33,7 @@ if(get_page_template_slug() == 'tpl/guru_contact.php') {
     wp_enqueue_style('jquery-masonry');
     
     wp_enqueue_script( 'guru-images-loaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array( 'jquery' ), '20141209', true );
+    wp_enqueue_script( 'guru-owl', get_template_directory_uri() . '/owl-carousel/owl.carousel.min.js', array( 'jquery' ), '20141209', true );
     wp_enqueue_script( 'guru-script', get_template_directory_uri() . '/js/main.js', array( 'jquery' ), '20141209', true );
 
 }
@@ -448,10 +454,56 @@ function guru_post_thumbnail($size = 'post-thumbnai') {
 }
 endif;
 
+if(!function_exists('guru_pagination')):
+function guru_pagination($pages = '', $range = 2, $current_query = '')
+{
+	$showitems = ($range * 2)+1;
+
+	if( $current_query == '' ) {
+		global $paged;
+		if( empty( $paged ) ) $paged = 1;
+	} else {
+		$paged = $current_query->query_vars['paged'];
+	}
+
+	if( $pages == '' ) {
+		if( $current_query == '' ) {
+			global $wp_query;
+			$pages = $wp_query->max_num_pages;
+			if(!$pages) {
+				 $pages = 1;
+			}
+		} else {
+			$pages = $current_query->max_num_pages;
+		}
+	}
+
+	 if(1 != $pages)
+	 {
+	 	
+            echo "<div class='pagination clearfix'>"
+             . "<h3>Pages</h3>";
+             //if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<a href='".get_pagenum_link(1)."'><span class='arrows'>&laquo;</span> First</a>";
+             if($paged > 1) echo "<a class='pagination-prev' href='".get_pagenum_link($paged - 1)."'><span class='page-prev'></span>".__('<')."</a>";
+
+             for ($i=1; $i <= $pages; $i++)
+             {
+                     if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems ))
+                     {
+                             echo ($paged == $i)? "<span class='current pagination-item'>".$i."</span>":"<a href='".get_pagenum_link($i)."' class='pagination-item inactive' >".$i."</a>";
+                     }
+             }
+
+             if ($paged < $pages) echo "<a class='pagination-next' href='".get_pagenum_link($paged + 1)."'>".__('>')."<span class='page-next'></span></a>";
+             //if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo "<a href='".get_pagenum_link($pages)."'>Last <span class='arrows'>&raquo;</span></a>";
+             echo "</div>\n";
+	 }
+}
+endif;
 function guru_require_once() {
     require get_template_directory() . '/inc/custom.php';
     require get_template_directory() . '/inc/shortcodes.php';
     
-    //new Guru_Works();
+    new Guru_Works();
 }
 add_action( 'after_setup_theme', 'guru_require_once', 1 );
