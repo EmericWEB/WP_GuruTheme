@@ -41,8 +41,22 @@
 						<p class="site-description"><?php echo $description; ?></p>
 					<?php endif;
 				?>
-				<button class="secondary-toggle"><?php _e( 'Menu and widgets', 'twentyfifteen' ); ?></button>
 			</div><!-- .site-branding -->
+                        <nav id="menu-primary">
+                           
+		<?php if ( has_nav_menu( 'primary' ) ) : ?>
+			<nav id="social-navigation" class="social-navigation" role="navigation">
+				<?php
+					// Social links navigation menu.
+					wp_nav_menu( array(
+						'theme_location' => 'primary',
+						'link_before'    => '<span class="screen-reader-text">',
+						'link_after'     => '</span>',
+					) );
+				?>
+			</nav><!-- .social-navigation -->
+		<?php endif; ?>
+                        </nav>
 		</header><!-- .site-header -->
 
 		<?php get_sidebar(); ?>
