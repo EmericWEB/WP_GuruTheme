@@ -58,8 +58,9 @@
             this.$slide.find('img').remove();
             */
            if(this.n > 2)   {
-               this.current = 1;
-                this.start();
+               //this.current = 0;
+               this.go(0)
+               this.start();
                 
                 $('#slider-next').click(function() {
                    slider.next(); 
@@ -78,7 +79,7 @@
         },
         start: function() {
             this.interval = setInterval(function() {
-                slider.go(slider.current);
+                slider.go(slider.current+1);
                 
             }, 3000);
         },
@@ -88,8 +89,8 @@
         go : function(idx) {
             //alert('slide ' + idx)
             //alert('slide ' + slider.current)
-                slider.current = idx;
-            this.$slide.eq(idx).css({zIndex : slider.zIndex++})
+            slider.current = idx%slider.n;
+            this.$slide.eq(slider.current).css({zIndex : slider.zIndex++})
                 .stop(true, true).hide().fadeOut(0).fadeIn(1200, '', function() {
                 //slider.go(slider.current);
             });
@@ -100,11 +101,11 @@
         },
         prev : function() {
             this.stop();
-            this.go( (slider.current -1) % slider.n);
+            this.go( (slider.current -1) );
         },
         next : function() {
             this.stop();
-            this.go( (slider.current + 1) % slider.n);
+            this.go( (slider.current + 1) );
         }
     };
     
