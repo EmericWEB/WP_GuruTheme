@@ -10,15 +10,15 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	
-	<header class="entry-header">
+    <header class="entry-header" style="background: transparent url(<?php echo get_guru_thumbnail('guru_fullscreen'); ?>) no-repeat center fixed">
             <?php
             // Post thumbnail.
-            guru_post_thumbnail('guru_fullscreen');
+            //guru_post_thumbnail('guru_fullscreen');
             the_title( '<h1 class="entry-title"><span>', '</span></h1>' );
             ?>
 	</header><!-- .entry-header -->
 
-	<div class="entry-content">
+	<div class="entry-content container">
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(

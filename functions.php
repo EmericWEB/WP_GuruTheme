@@ -430,7 +430,7 @@ if ( ! function_exists( 'guru_post_thumbnail' ) ) :
  *
  * @since Twenty Fifteen 1.0
  */
-function guru_post_thumbnail($size = 'post-thumbnai') {
+function guru_post_thumbnail($size = 'post-thumbnail') {
 	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 		return;
 	}
@@ -453,6 +453,16 @@ function guru_post_thumbnail($size = 'post-thumbnai') {
 	<?php endif; // End is_singular()
 }
 endif;
+
+function get_guru_thumbnail($size = 'post-thumbnail') {
+    global $post;
+    $url = '';
+    $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), $size );
+    if(isset($thumb['0'])) {
+        $url = $thumb['0'];
+    }
+    return $url;
+}
 
 if(!function_exists('guru_pagination')):
 function guru_pagination($pages = '', $range = 2, $current_query = '')

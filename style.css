@@ -11,15 +11,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 #sidebar {
     margin-top: 80px;
+    display: none;
 }
 header.entry-header {
     position: relative;
-    min-height: 180px;
+    height: 320px;
+    overflow: hidden;
 }
 
 header.entry-header h1.entry-title{
     position: absolute;
-    top: 20px;
+    top: 80px;
     left:0;
     width: 100%;
     text-align: center;
@@ -34,7 +36,7 @@ header.entry-header h1.entry-title span{
     box-shadow: 0 0 20px rgba(120,120,120,0.2);
     margin: 5px;
 }
-
+#content {margin-top: 48px;}
 nav#site-navigation {
     position: fixed;
     width: 100%;
@@ -60,11 +62,60 @@ nav#site-navigation ul li a{
     text-transform: uppercase;
     letter-spacing: 3px;
 }
-.owl {background-color: #000;}
+.owl {background-color: #fff;}
 .owl .owl-item .post-thumbnail{
 margin: 10px;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 border-radius: 5px;
 text-align: center;
+}
+
+#homeblog {
+    background: transparent url(img/homeblog.jpg) no-repeat center;
+    padding: 80px 0;
+    margin: 80px 0;
+}
+.homeblog-inner {
+    background-color: #fff;
+    max-width: 720px;
+    margin: 2% auto;
+    width: 95%;
+    position: relative;
+    border:3px double #000;
+    height: 360px;
+}
+.blog-entry {
+}
+.slider-nav {
+    position: relative;
+    height: 100%;
+    z-index: 99;
+}
+.slider-nav a {
+    position: absolute;
+    top:50%;
+}
+#slider-prev {
+    left:0
+}
+#slider-next {
+    right:0
+}
+.slide {
+    z-index: 1;
+}
+.slide {
+    display: none;
+    background-position: center;
+    position:absolute;
+    width:66%;
+    text-align: center;
+    top:0;
+    left:17%;
+background-color: #fff;
+}
+
+.slide:first-child {
+    display: block;
 }
